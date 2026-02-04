@@ -33,7 +33,7 @@ const inventaire = [
 
 function salutations(nom) {
   console.log(`Salutations ${nom}`);
-}
+};
 
 
 // 🧪 TESTS - Décommente pour tester
@@ -58,8 +58,7 @@ function calculerPrixTotal(nomPotion, array, number) {
       return potion.prix * number;
     }
   }
-}
-
+};
 
 // 🧪 TESTS - Décommente pour tester
 // console.log("=== EXERCICE 2 ===");
@@ -78,19 +77,19 @@ function calculerPrixTotal(nomPotion, array, number) {
 
 function fabriquerPotion(nomPotion, prixPotion = 50, quantitePotion = 1) {
   return {
-    nom: nomPotion,
+    id: nomPotion,
     prix: prixPotion,
-    quantite: quantitePotion
+    stock: quantitePotion
   }
-}
+};
 
 
 // 🧪 TESTS - Décommente pour tester
 // console.log("=== EXERCICE 3 ===");
-const potion1 = fabriquerPotion("potion_mana", 15, 5);
- console.log(potion1);
- const potion2 = fabriquerPotion("potion_force");
- console.log(potion2);
+//const potion1 = fabriquerPotion("potion_mana", 15, 5);
+// console.log(potion1);
+// const potion2 = fabriquerPotion("potion_force");
+// console.log(potion2);
 
 
 // ============================================
@@ -102,14 +101,17 @@ const potion1 = fabriquerPotion("potion_mana", 15, 5);
 // ✍️ TON CODE ICI
 // Crée ta fonction ajouterPotion() ci-dessous
 
-
+function ajouterPotion(array, element) {
+  array.push(element);
+};
 
 
 // 🧪 TESTS - Décommente pour tester
-// console.log("=== EXERCICE 4 ===");
-// const nouvellePotion = fabriquerPotion("potion_mana", 20, 3);
-// ajouterPotion(inventaire, nouvellePotion);
-// console.log("Inventaire après ajout:", inventaire);
+ console.log("=== EXERCICE 4 ===");
+ console.log("Inventaire avant ajout", inventaire);
+ const nouvellePotion = fabriquerPotion("potion_mana", 20, 3);
+ ajouterPotion(inventaire, nouvellePotion);
+ console.log("Inventaire après ajout:", inventaire);
 
 
 // ============================================
