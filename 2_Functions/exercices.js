@@ -31,12 +31,14 @@ const inventaire = [
 // ✍️ TON CODE ICI
 // Crée ta fonction salutations() ci-dessous
 
-
+function salutations(nom) {
+  console.log(`Salutations ${nom}`);
+}
 
 
 // 🧪 TESTS - Décommente pour tester
-// console.log("=== EXERCICE 1 ===");
-// salutations(nom_sorcier);
+ //console.log("=== EXERCICE 1 ===");
+ //salutations(nom_sorcier);
 
 
 // ============================================
@@ -48,13 +50,21 @@ const inventaire = [
 // ✍️ TON CODE ICI
 // Crée ta fonction calculerPrixTotal() ci-dessous
 
-
+function calculerPrixTotal(nomPotion, array, number) {
+  for (potion of array) {
+    console.log(potion);
+    if (potion.id == nomPotion) {
+      console.log(potion.prix);
+      return potion.prix * number;
+    }
+  }
+}
 
 
 // 🧪 TESTS - Décommente pour tester
-// console.log("=== EXERCICE 2 ===");
-// const prix = calculerPrixTotal("potion_soin", inventaire, 3);
-// console.log("Prix pour 3 potions:", prix, "🪙");
+ console.log("=== EXERCICE 2 ===");
+ const prix = calculerPrixTotal("potion_soin", inventaire, 3);
+ console.log("Prix pour 3 potions:", prix, "🪙");
 
 
 // ============================================
