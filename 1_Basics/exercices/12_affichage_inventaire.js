@@ -31,7 +31,9 @@ inventaire.forEach(element => {
 });
 
 inventaire.forEach(element=> {
-    for (champ in element) {
-        console.log(champ)
-    }
+    console.log(element)
+    
 })
+
+for (let potion of Object.entries(inventaire)) {
+    console.log(potion)}
