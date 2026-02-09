@@ -7,6 +7,9 @@
 // ✍️ TON CODE ICI
 // Sélectionne le <h1> et affiche son texte dans la console
 
+let titre = document.querySelector("h1");
+//console.log(titre);
+
 // ============================================
 // EXERCICE 2 : Des informations manquent !
 // ============================================
@@ -16,6 +19,12 @@
 // ✍️ TON CODE ICI
 // Crée un nouveau paragraphe et ajoute-le dans #description_boutique
 
+let description = document.querySelector("#description_boutique");
+console.log(description);
+
+let paragraphe = document.createElement('p');
+paragraphe.textContent =  `Pour cela, il vous suffit de cliquer sur une des potions de la liste ci-dessous pour l'acheter.`;
+description.appendChild(paragraphe);
 // ============================================
 // EXERCICE 3 : Roger, enfoiré !
 // ============================================
@@ -24,6 +33,8 @@
 
 // ✍️ TON CODE ICI
 // Supprime le <span id="blague_de_roger_le_sorcier">
+let blague = document.querySelector("#blague_de_roger_le_sorcier");
+blague.remove();
 
 // ============================================
 // EXERCICE 4 : Archibald n'est pas là, appelons-le !
