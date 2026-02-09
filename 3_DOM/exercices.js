@@ -211,6 +211,20 @@ potion_categories.forEach((element) => {
 // Récupère les data attributes de la potion parente
 // Affiche les infos dans la div .potion-info
 
+const infos = document.querySelectorAll(`.show-info`);
+infos.forEach((element) => {
+  element.addEventListener("click", () => {
+    let carte = element.closest('.labeled-potion');
+    let rarete = carte.dataset.rarete;
+    let effet = carte.dataset.effetSecondaire;
+    let duree = carte.dataset.duree;
+    let info = carte.querySelector('.potion-info');
+    info.innerHTML = rarete + ' <br> ' +  effet + ' <br> ' + duree;
+  
+    info.classList.toggle('hidden');
+  })
+})
+
 // ============================================
 // EXERCICE 11 : Validation Magique en Temps Réel ✨
 // ============================================
