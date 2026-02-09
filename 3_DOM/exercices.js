@@ -127,6 +127,33 @@ potions.forEach((potion) => {
 // Utilise FormData pour extraire les valeurs
 // Réutilise la fonction de l'exercice 6 pour ajouter la nouvelle potion
 
+
+const formulaire = document.querySelector("form");
+formulaire.addEventListener("submit", (event) => {
+  event.preventDefault(); // IMPORTANT !
+
+  const formData = new FormData(formulaire);
+  const nouvellePotion = {
+    nom: formData.get("nom"),
+    description: formData.get("description"),
+    prix: formData.get("prix"),
+  };
+
+  afficherPotion(nouvellePotion);
+});
+
+function afficherPotion(potion) {
+  const conteneur = document.querySelector("#liste_potions");
+  const template = document.querySelector("#template_potion");
+  const clone = template.content.cloneNode(true);
+
+  clone.querySelector(".nom_potion").textContent = potion.nom;
+  clone.querySelector(".prix_potion").textContent = potion.prix;
+  clone.querySelector(".description_potion").textContent = potion.description;
+
+  conteneur.appendChild(clone);
+}
+
 // ============================================
 // EXERCICE 8 : Le Miroir Magique 🪞
 // ============================================
