@@ -101,6 +101,21 @@ const potions = [
 // Crée une fonction pour afficher une potion à partir du template
 // Parcours le tableau potions et affiche chaque potion
 
+const conteneur = document.querySelector("#liste_potions");
+const template = document.querySelector("#template_potion");
+
+potions.forEach((potion) => {
+  const clone = template.content.cloneNode(true);
+
+  // Modifier le clone
+  clone.querySelector(".nom_potion").textContent = potion.nom;
+  clone.querySelector(".description_potion").textContent = potion.description;
+  clone.querySelector(".prix_potion").textContent = potion.prix;
+  // ... etc
+
+  conteneur.appendChild(clone);
+});
+
 // ============================================
 // EXERCICE 7 : Plus de potions, nous avons besoin de plus de potions !
 // ============================================
