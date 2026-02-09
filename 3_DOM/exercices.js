@@ -45,6 +45,14 @@ blague.remove();
 // ✍️ TON CODE ICI
 // Ajoute un événement 'click' sur le bouton #call_archibald
 
+let btn = document.querySelector("#call_archibald");
+btn.addEventListener("click", () => {
+  // Ton code ici
+  alert(`🧙‍♂️ J'arrive, j'arrive Aventurier !`)
+  
+});
+
+
 // ============================================
 // EXERCICE 5 : Faisons un peu de magie 🪄
 // ============================================
