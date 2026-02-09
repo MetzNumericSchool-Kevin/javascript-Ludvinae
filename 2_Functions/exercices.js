@@ -133,10 +133,10 @@ function getPotionsEnRupture(array) {
 
 
 // 🧪 TESTS - Décommente pour tester
- console.log("=== EXERCICE 5 ===");
- console.log("Inventaire complet:", inventaire);
- console.log("Potions en stock:", getPotionsEnStock(inventaire));
- console.log("Potions en rupture:", getPotionsEnRupture(inventaire));
+// console.log("=== EXERCICE 5 ===");
+// console.log("Inventaire complet:", inventaire);
+// console.log("Potions en stock:", getPotionsEnStock(inventaire));
+// console.log("Potions en rupture:", getPotionsEnRupture(inventaire));
 
 
 // ============================================
@@ -150,11 +150,20 @@ function getPotionsEnRupture(array) {
 // Crée ta fonction fabriquerPotionAvecIngredients() ci-dessous
 
 
-
+function fabriquerPotionAvecIngredients(id, ingredientsPotion, prix = 10, stock=1) {
+  if (!id in manuel_de_fabrication) return new Error("Cette potion n'est pas dans le manuel.");
+ 
+  for (ingredient of manuel_de_fabrication[id].ingredients) {
+    if (!ingredientsPotion.includes(ingredient)) return new Error("Il manque " + ingredient);
+  }
+  
+  return fabriquerPotion(id, prix)
+  //return potion_soin;
+};
 
 // 🧪 TESTS - Décommente pour tester
 // console.log("=== EXERCICE 6 ===");
-// // Test avec tous les ingrédients
+ // Test avec tous les ingrédients
 // const resultat1 = fabriquerPotionAvecIngredients(
 //   "potion_soin",
 //   ["eau_de_source", "ecaille_de_dragon", "poudre_de_diamant"],
@@ -167,8 +176,8 @@ function getPotionsEnRupture(array) {
 //   console.log("✅ Potion créée:", resultat1);
 //   ajouterPotion(inventaire, resultat1);
 // }
-//
-// // Test avec ingrédients manquants
+
+ // Test avec ingrédients manquants
 // const resultat2 = fabriquerPotionAvecIngredients(
 //   "potion_soin",
 //   ["eau_de_source"],
@@ -192,7 +201,19 @@ function getPotionsEnRupture(array) {
 // ✍️ TON CODE ICI
 // Crée ta fonction fabriquerPotionAvecDelai() ci-dessous
 
+function fabriquerPotionAvecDelai(id, ingredientsPotion, callback, prix=10, stock=1) {
+  if (!id in manuel_de_fabrication) return new Error("Cette potion n'est pas dans le manuel.");
+ 
+  for (ingredient of manuel_de_fabrication[id].ingredients) {
+    if (!ingredientsPotion.includes(ingredient)) return new Error("Il manque " + ingredient);
+  }
 
+  setTimeout(() => {
+    // Code à exécuter après le délai
+    const potion = { id, prix, stock };
+    callback(potion); // On appelle le callback avec la potion
+  }, manuel_de_fabrication[id].temps_de_fabrication * 1000);
+}
 
 
 // 🧪 TESTS - Décommente pour tester
@@ -209,7 +230,7 @@ function getPotionsEnRupture(array) {
 //   15,
 //   2
 // );
-//
+
 // if (erreur instanceof Error) {
 //   console.error(erreur.message);
 // } else {
@@ -226,11 +247,27 @@ function getPotionsEnRupture(array) {
 // ✍️ TON CODE ICI
 // Crée ta fonction creerInventaire() ci-dessous
 
+function creerInventaire() {
+  let inventaire = [];
 
+  return {
+    ajouterPotion: function (potion) {
+      inventaire.push(potion);
+    },
+
+    getPotionsEnStock: function () {
+      return inventaire.filter((element) => element.stock > 0);
+    },
+
+    getPotionsEnRupture: function () {
+      return inventaire.filter((element) => element.stock <= 0);
+    }
+  }
+}
 
 
 // 🧪 TESTS - Décommente pour tester
-// console.log("=== EXERCICE 8 ===");
+//console.log("=== EXERCICE 8 ===");
 // const boutiqueA = creerInventaire();
 // const boutiqueB = creerInventaire();
 //
@@ -250,16 +287,37 @@ function getPotionsEnRupture(array) {
 // ✍️ TON CODE ICI
 // Crée ta classe Inventaire ci-dessous
 
+class Inventaire {
+  #inventaire; // Propriété privée (avec #)
 
+  constructor() {
+    this.#inventaire = []; // Initialisation dans le constructeur
+  }
+
+  ajouterPotion(potion) {
+    // Ton code ici (utilise this.#inventaire)
+    this.#inventaire.push(potion);
+  }
+
+  getPotionsEnStock() {
+    // Ton code ici
+    return this.#inventaire.filter((element) => element.stock > 0);
+  }
+
+  getPotionsEnRupture() {
+    // Ton code ici
+    return this.#inventaire.filter((element) => element.stock <= 0);
+  }
+}
 
 
 // 🧪 TESTS - Décommente pour tester
-// console.log("=== EXERCICE 9 ===");
-// const boutiqueC = new Inventaire();
-// const boutiqueD = new Inventaire();
-//
-// boutiqueC.ajouterPotion(fabriquerPotion("potion_soin", 10, 5));
-// boutiqueD.ajouterPotion(fabriquerPotion("potion_mana", 15, 0));
-//
-// console.log("Boutique C - Potions en stock:", boutiqueC.getPotionsEnStock());
-// console.log("Boutique D - Potions en rupture:", boutiqueD.getPotionsEnRupture());
+ console.log("=== EXERCICE 9 ===");
+ const boutiqueC = new Inventaire();
+ const boutiqueD = new Inventaire();
+
+ boutiqueC.ajouterPotion(fabriquerPotion("potion_soin", 10, 5));
+ boutiqueD.ajouterPotion(fabriquerPotion("potion_mana", 15, 0));
+
+ console.log("Boutique C - Potions en stock:", boutiqueC.getPotionsEnStock());
+ console.log("Boutique D - Potions en rupture:", boutiqueD.getPotionsEnRupture());
