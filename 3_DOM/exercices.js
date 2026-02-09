@@ -62,6 +62,18 @@ btn.addEventListener("click", () => {
 // ✍️ TON CODE ICI
 // Récupère toutes les boîtes et les boutons de couleur
 // Ajoute des événements pour changer les couleurs
+const bouton1 = document.querySelector(`#btn_change_red`);
+const bouton2 = document.querySelector(`#btn_change_blue`);
+const bouton3 = document.querySelector(`#btn_change_green`);
+
+const boites = document.querySelectorAll(".boite");
+
+bouton1.addEventListener("click", () => {boites[0].style.backgroundColor = "red";});
+bouton2.addEventListener("click", () => {boites[1].style.backgroundColor = "blue";});
+bouton3.addEventListener("click", () => {boites[2].style.backgroundColor = "green";});
+
+
+
 
 // ============================================
 // EXERCICE 6 : Aventurier, voici ma boutique !
