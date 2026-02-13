@@ -86,6 +86,13 @@ let nomEpoqueActuelle;
 
 // ✍️ TON CODE ICI
 // Crée la fonction voyagerTemps(destination, callback)
+
+function voyagerTemps(destination, callback) {
+  console.log("Voyage en cours vers : ", destination);
+  setTimeout(callback, generationNombreAleatoireEntre(1000, 3000));
+  console.log(nomEpoqueActuelle);
+}
+
 // Utilise setTimeout() avec generationNombreAleatoireEntre(1000, 3000)
 
 // Fonction appelée quand le formulaire de voyage temporel est envoyé
@@ -95,6 +102,13 @@ function quandEpoqueChoisie(nomEpoque) {
 
   // ✍️ TON CODE ICI
   // Utilise voyagerTemps() ici
+  document.querySelector(".localisation_epoque").style.display = "none";
+  document.querySelector(".voyage_en_cours").style.display = "block";
+  voyagerTemps(nomEpoque, () => {
+    document.querySelector(".voyage_en_cours").style.display = "none";
+    afficherDestination(nomEpoque);
+    document.querySelector(".localisation_epoque").style.display = "block"
+  });
   // Avant le voyage : cache .localisation_epoque et affiche .voyage_en_cours
   // Après le voyage (callback) : cache le loader et appelle afficherDestination()
 }
@@ -107,16 +121,33 @@ function quandEpoqueChoisie(nomEpoque) {
 
 // ✍️ TON CODE ICI
 // Crée la fonction collecterArtefact(nomArtefact, callback)
+function collecterArtefact(artefact, callback) {
+  setTimeout(() => {
+    let rand = Math.random() * 100
+    callback(rand > 50);
+   
+  }, generationNombreAleatoireEntre(1000, 3000));
+}
 // Le callback reçoit true ou false selon le succès
-
 // Fonction appelée quand le formulaire de recherche d'artefact est envoyé
 function quandRechercheArtefact(artefact) {
   console.log(artefact);
+  document.querySelector(".recherche_en_cours").display = "block";
 
   // ✍️ TON CODE ICI
   // Utilise collecterArtefact() ici
+  collecterArtefact(artefact, (success) => {
+    
+    document.querySelector(".recherche_en_cours").display = "none";
+    afficherRechercheArtefact({ artefact, epoque: nomEpoqueActuelle, success });
+  })
+
+  
   // Avant : affiche .recherche_en_cours
+  
   // Après (callback) : cache le loader et appelle afficherRechercheArtefact()
+  
+  
 }
 
 // ============================================

@@ -211,19 +211,19 @@ potion_categories.forEach((element) => {
 // Récupère les data attributes de la potion parente
 // Affiche les infos dans la div .potion-info
 
-const infos = document.querySelectorAll(`.show-info`);
-infos.forEach((element) => {
-  element.addEventListener("click", () => {
-    let carte = element.closest('.labeled-potion');
-    let rarete = carte.dataset.rarete;
-    let effet = carte.dataset.effetSecondaire;
-    let duree = carte.dataset.duree;
-    let info = carte.querySelector('.potion-info');
-    info.innerHTML = rarete + ' <br> ' +  effet + ' <br> ' + duree;
-  
-    info.classList.toggle('hidden');
-  })
-})
+//const infos = document.querySelectorAll(`.show-info`);
+//infos.forEach((element) => {
+//  element.addEventListener("click", () => {
+//    let carte = element.closest('.labeled-potion');
+//    let rarete = carte.dataset.rarete;
+//    let effet = carte.dataset.effetSecondaire;
+//    let duree = carte.dataset.duree;
+//    let info = carte.querySelector('.potion-info');
+//    info.innerHTML = rarete + ' <br> ' +  effet + ' <br> ' + duree;
+//  
+//    info.classList.toggle('hidden');
+//  })
+//})
 
 // ============================================
 // EXERCICE 11 : Validation Magique en Temps Réel ✨
@@ -237,6 +237,21 @@ infos.forEach((element) => {
 // Valide le champ (min 3 caractères pour texte, > 0 pour prix)
 // Ajoute les classes 'valid' ou 'invalid' et affiche un message
 // Active/désactive le bouton submit selon la validité globale
+
+`#potion-name`, `#potion-ingredient`, `#potion-price`
+const namePopo = document.querySelector("#potion-name");
+const ingredient = document.querySelector("#potion-ingredient");
+const price = document.querySelector("#potion-price");
+let submit = document.querySelector("#custom-potion-form").querySelector('button');
+
+namePopo.addEventListener("input", () => {
+  let condition = namePopo.length < 3;
+
+  //submit.classList.toggle('.disabled = true', condition);
+  submit.disabled = false;
+
+})
+
 
 // ============================================
 // EXERCICE 12 : Calculateur de Commande 🧮
