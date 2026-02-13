@@ -158,7 +158,29 @@ function quandRechercheArtefact(artefact) {
 
 // ✍️ TON CODE ICI
 // Crée la fonction missionTemporelleComplexe()
+function missionTemporelleComplexe() {
+  voyagerTemps("medieval", () => {
+    console.log("Arrivée a l'epoque medievale")
+    collecterArtefact("épée medievale", (success) => {
+      if (success) console.log("épée medievale trouvée");
+      else console.log("recherche échouée");
+      voyagerTemps("romaine", () => {
+        console.log("Arrivée a l'epoque romaine")
+          collecterArtefact("bouclier romain", (success) => {
+            if (success) console.log("bouclier romain trouvé");
+            else console.log("recherche echouée");
+            collecterArtefact("epee romaine", (success) => {
+              if (success) console.log("épée romaine trouvée");
+              else console.log("recherche échouée");
+            })
+          })
+        })
+      })
+    })
+  }
+
 // Exécute la séquence : medievale → épée chevalier → romaine → bouclier romain → épée romaine
+missionTemporelleComplexe();
 
 // ============================================
 // EXERCICE 4 : Je te promets des voyages sans tracas ! 🤝
